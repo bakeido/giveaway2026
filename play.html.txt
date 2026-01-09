@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bakeido Video</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    .unmute-hint {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 14px;
+      opacity: 0.8;
+      animation: float 2s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+
+  <video id="vid" autoplay muted playsinline>
+    <source src="https://github.com/bakeido/giveaway2026/raw/refs/heads/main/FreeBakedSnacks%20(1).mp4" type="video/mp4">
+  </video>
+
+  <div class="unmute-hint" id="hint">Tap anywhere for sound 🔊</div>
+
+  <script>
+    const video = document.getElementById("vid");
+    const hint = document.getElementById("hint");
+
+    document.body.addEventListener("click", () => {
+      video.muted = false;
+      video.play();
+      hint.style.display = "none";
+    });
+
+    video.addEventListener("ended", () => {
+      document.body.style.background = "black";
+    });
+  </script>
+
+</body>
+</html>
